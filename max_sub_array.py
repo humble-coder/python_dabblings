@@ -39,3 +39,53 @@ def find_maximum_subarray(A, low, high):
             return (cross_low, cross_high, cross_sum)
 
 
+
+
+def brute_force_max_subarray(A):
+    total = float('-inf')
+    left = 0
+    right = 0
+    for i in range(0, len(A) - 1):
+        current_total = A[i]
+        if current_total > total:
+            total = current_total
+        for j in range(i + 1, len(A)):
+            current_total += A[j]
+            if current_total > total:
+                total = current_total
+                left = i
+                right = j
+    return(total, left, right)
+
+
+
+def linear_max_subarray(A):
+    total = float('-inf')
+    left = 0
+    right = 0
+    current_total = 0
+    for i in range(0, len(A)):
+        current_total += A[i]
+        if current_total > total:
+            total = current_total
+            right = i
+        else:
+            left = right = i
+            
+    return(sum(A[left + 1:right + 1]), left + 1, right)
+
+
+
+
+
+
+
+        
+
+    
+
+    
+
+
+
+
